@@ -1,0 +1,50 @@
+name: guess_me
+description: A new Flutter application.
+version: 0.0.2+2
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  http: ^0.13.0
+  flutter:
+    sdk: flutter
+
+
+  shared_preferences: ^2.0.7
+  provider: ^6.0.0
+
+  flutter_libphonenumber: ^1.2.1
+  libphonenumber: ^2.0.2
+
+  permission_handler: ^8.1.6
+  contacts_service: ^0.6.3
+  intl_phone_number_input: ^0.7.0+2
+
+  firebase_core: ^1.8.0
+  cloud_firestore: ^2.5.4
+  firebase_auth: ^3.1.4
+
+  flutter_facebook_auth: ^3.5.1
+
+  flutter_signin_button: ^2.0.0
+  pin_code_fields: ^7.3.0
+
+  devicelocale: ^0.5.0
+  plugin_platform_interface: ^2.0.1
+  http_parser: ^4.0.0
+  firebase_auth_web: ^3.1.0
+  path_provider_platform_interface: ^2.0.1
+
+  flutter_open_whatsapp: ^0.1.2
+  flutter_sms: ^2.3.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  assets:
+    - images/
+
+  uses-material-design: true
