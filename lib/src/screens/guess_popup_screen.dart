@@ -30,6 +30,7 @@ class _GuessScreenState extends State<GuessScreen> {
   List<ContactObj> selectedCF = [];
 
   bool run = false;
+  bool load = false;
   int allow = 1;
 
   @override
@@ -98,7 +99,7 @@ class _GuessScreenState extends State<GuessScreen> {
       child: Consumer<ContactProvider>(
         builder: (context, contactBloc, _) {
           if (!run) {
-            displayContacts = contactBloc.contactsU;
+            displayContacts = contactBloc.contactsU.toList();
             run = true;
           }
           return Scaffold(
@@ -166,6 +167,13 @@ class _GuessScreenState extends State<GuessScreen> {
                 FloatingActionButtonLocation.centerFloat,
             floatingActionButton: InkWell(
               onTap: () async {
+                if (load) {
+                  showSnackBarWithText(context, text: 'Loading...');
+                  return;
+                }
+                setState(() {
+                  load = true;
+                });
                 if (selectedCF.length == 0) {
                   showSnackBarWithText(context,
                       text: 'First choose at least 1 contact');
@@ -203,6 +211,9 @@ class _GuessScreenState extends State<GuessScreen> {
                   MessagesProvider.clean();
                   Navigator.pop(context);
                 }
+                setState(() {
+                  load = false;
+                });
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -214,10 +225,13 @@ class _GuessScreenState extends State<GuessScreen> {
                 height: 47,
                 width: 150,
                 child: Center(
-                  child: Text(
-                    'GuessMe',
-                    style: TextStyle(color: kAppBarTextColor, fontSize: 21),
-                  ),
+                  child: load
+                      ? CircularProgressIndicator()
+                      : Text(
+                          'GuessMe',
+                          style:
+                              TextStyle(color: kAppBarTextColor, fontSize: 21),
+                        ),
                 ),
               ),
             ),
@@ -264,7 +278,7 @@ class _GuessScreenState extends State<GuessScreen> {
                       width: 70,
                       child: Text(
                         'You can guess up to '
-                            '${allow} contact${allow != 1 ? 's' : ''}!',
+                        '$allow contact${allow != 1 ? 's' : ''}!',
                         style: TextStyle(
                           color: kAppBarTextColor,
                         ),

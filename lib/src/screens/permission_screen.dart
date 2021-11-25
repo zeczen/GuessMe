@@ -112,7 +112,6 @@ class _PermissionScreenState extends State<PermissionScreen> {
         if (pressedSkip) tryGoNextPage(context);
       });
 
-      await SharedPrefService('initial process done').setValue(false);
     } on AccessExep catch (e) {
       setState(() {
         granted = false;

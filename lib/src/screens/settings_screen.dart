@@ -265,7 +265,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           SizedBox(height: 20),
           Text(
-            'Version 1.0',
+            'Version 0.0.3',
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: kAppBarTextColor.withOpacity(.2), fontSize: 15),

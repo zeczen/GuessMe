@@ -19,25 +19,21 @@ abstract class CloudFunction {
   static Future<bool> isOpenAlreadyToday() async {
     final String today = DateTime.now().toString().split(' ')[0]; //2021-04-01
     String lastDayRun = await SharedPrefService('date').value ?? "0000-00-00";
+    SharedPrefService('date').setValue(today);
     return today == lastDayRun;
   }
 
   static Future<void> onceADay() async {
-    // update fireStore properties
+    whenUserLog();
+    // this is a high cost function, so we call it just once a day
   }
 
   static Stream<int> whenUserLog() async* {
-    final bool isDone =
-        await SharedPrefService('initial process done').value ?? false;
-    if (!isDone) {
       // call only when we passed the 2 stages
       Iterable<Contact> contacts = (await PermissionService.getContacts());
 
       yield* _checkWithDataBase(contacts); // RUN!
-
-      SharedPrefService('initial process done').setValue(true);
       // initial the user document in database
-    }
   }
 
   static Future<void> onceAppOpen() async {

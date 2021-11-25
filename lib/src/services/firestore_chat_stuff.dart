@@ -15,6 +15,7 @@ abstract class FirebaseStoreChat {
         .get();
     for (QueryDocumentSnapshot cht in chatsToDel.docs) cht.reference.delete();
   }
+
   static Future<void> deleteUserChats(String current) async {
     QuerySnapshot chatsToDel = await FirebaseFirestore.instance
         .collection(CHATSA)

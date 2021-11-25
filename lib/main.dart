@@ -14,6 +14,7 @@ import 'src/screens/welcome_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setPreferredOrientations([
     // to prevent horizontal mode
     DeviceOrientation.portraitUp,

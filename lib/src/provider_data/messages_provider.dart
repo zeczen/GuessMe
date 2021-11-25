@@ -32,8 +32,7 @@ class MessagesProvider with ChangeNotifier {
   List<MessageObj> get messagesReceive => messagesReceiveStatic;
 
   void loadData({bool force = false}) {
-    if (!force && _process)
-      return;
+    if (!force && _process) return;
     if (loading) return;
     loading = true;
     load = _loadData();

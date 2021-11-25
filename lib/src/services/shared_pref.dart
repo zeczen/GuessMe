@@ -22,13 +22,6 @@ class SharedPrefService {
   Future<void> setValue(newValue) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    if (_key == 'initial process done') {
-      value = prefs.setBool(_key, newValue).then((bool isDone) {
-        if (isDone) {
-        }
-        return newValue;
-      });
-    }
     if (_key == 'firstStage') {
       value = prefs.setBool(_key, newValue).then((bool isDone) {
         if (isDone) {
@@ -90,10 +83,9 @@ class SharedPrefService {
       value = prefs.getBool(_key);
     else if (_key == 'contacts')
       value = prefs.getStringList(_key);
-    else if (_key == 'initial process done')
-      value = prefs.getBool(_key);
+
     else
-      throw ("Erorr1234321"); // invalid name
+      throw ("Invalid key"); // invalid key
     return value;
   }
 }
